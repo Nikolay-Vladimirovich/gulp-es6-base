@@ -11,10 +11,8 @@ const pugs = require("gulp-pug");
 
 const webpHtml = require("gulp-webp-html");
 
-// обработка PUG
+// Обработка PUG
 const pug = () => {
-	console.log("Обработка PUG");
-
 	return src(path.pug.src)
 		.pipe(plumber({
 			errorHandler: notify.onError(error => ({

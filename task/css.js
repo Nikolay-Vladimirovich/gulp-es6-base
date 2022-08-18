@@ -17,10 +17,8 @@ const shorthand = require("gulp-shorthand");
 const groupCssMediaQueries = require("gulp-group-css-media-queries");
 const webpCss = require("gulp-webp-css");
 
-// обработка CSS
+// Обработка CSS
 const css = () => {
-	console.log("Обработка CSS");
-
 	return src(path.css.src, { sourcemaps: app.isDev})
 		.pipe(plumber({
 			errorHandler: notify.onError(error => ({

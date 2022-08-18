@@ -10,14 +10,12 @@ const notify = require("gulp-notify");
 const babel = require("gulp-babel");
 const webpack = require("webpack-stream");
 
-// обработка JavaScript
+// Обработка JavaScript
 const js = () => {
-	console.log("Обработка CSS");
-
 	return src(path.js.src, { sourcemaps: app.isDev })
 		.pipe(plumber({
 			errorHandler: notify.onError(error => ({
-				title: "JS",
+				title: "JavaScript",
 				message: error.message
 			}))
 		}))

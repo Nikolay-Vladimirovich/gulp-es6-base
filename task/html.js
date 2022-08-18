@@ -12,10 +12,8 @@ const htmlmin = require("gulp-htmlmin");
 const size = require("gulp-size");
 const webpHtml = require("gulp-webp-html");
 
-// обработка HTML
+// Обработка HTML
 const html = () => {
-	console.log("Обработка HTML");
-
 	return src(path.html.src)
 		.pipe(plumber({
 			errorHandler: notify.onError(error => ({

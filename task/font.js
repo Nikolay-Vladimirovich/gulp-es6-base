@@ -11,14 +11,12 @@ const newer = require("gulp-newer");
 const fonter = require("gulp-fonter");
 const ttf2woff2 = require("gulp-ttf2woff2");
 
-// обработка шрифтов
+// Обработка шрифтов
 const font = () => {
-	console.log("Обработка шрифтов");
-
 	return src(path.font.src)
 		.pipe(plumber({
 			errorHandler: notify.onError(error => ({
-				title: "Font",
+				title: "Шрифты",
 				message: error.message
 			}))
 		}))

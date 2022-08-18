@@ -17,10 +17,8 @@ const sass = require("gulp-sass")(require("sass"));
 const sassGlob = require("gulp-sass-glob");
 const webpCss = require("gulp-webp-css");
 
-// обработка SCSS
+// Обработка SCSS
 const scss = () => {
-	console.log("Обработка SCSS");
-
 	return src(path.scss.src, { sourcemaps: app.isDev })
 		.pipe(plumber({
 			errorHandler: notify.onError(error => ({

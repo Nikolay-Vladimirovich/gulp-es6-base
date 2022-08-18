@@ -12,14 +12,12 @@ const newer = require("gulp-newer");
 const webp = require("gulp-webp");
 const gulpif = require("gulp-if");
 
-// обработка изображений
+// Обработка изображений
 const img = () => {
-	console.log("Обработка изображений");
-
 	return src(path.img.src)
 		.pipe(plumber({
 			errorHandler: notify.onError(error => ({
-				title: "Images",
+				title: "Изображения",
 				message: error.message
 			}))
 		}))
