@@ -1,17 +1,17 @@
-const { watch, series, parallel, on } = require("gulp");
-const browserSync = require("browser-sync").create();
+import gulp from "gulp";
+import browserSync from "browser-sync";
 
 // Конфигурация
-const path = require("./config/path.js")
-const app = require("./config/app.js")
+import path from "./config/path.js"
+import app from "./config/app.js"
 
 // Задачи
-const clear = require('./task/clear.js');
-const pug = require('./task/pug.js');
-const scss = require('./task/scss.js');
-const js = require('./task/js.js');
-const img = require('./task/img.js');
-const font = require('./task/font.js');
+import clear from './task/clear.js';
+import pug from './task/pug.js';
+// const scss = require('./task/scss.js');
+// const js = require('./task/js.js');
+// const img = require('./task/img.js');
+// const font = require('./task/font.js');
 
 // Сервер
 const server = () => {
@@ -24,36 +24,36 @@ const server = () => {
 
 // Наблюдение
 const watcher = () => {
-	watch(path.pug.watch, pug).on("all", browserSync.reload);
-	watch(path.scss.watch, scss).on("all", browserSync.reload);
-	watch(path.js.watch, js).on("all", browserSync.reload);
-	watch(path.img.watch, img).on("all", browserSync.reload);
-	watch(path.font.watch, font).on("all", browserSync.reload);
+	gulp.watch(path.pug.watch, pug).on("all", browserSync.reload);
+	// watch(path.scss.watch, scss).on("all", browserSync.reload);
+	// watch(path.js.watch, js).on("all", browserSync.reload);
+	// watch(path.img.watch, img).on("all", browserSync.reload);
+	// watch(path.font.watch, font).on("all", browserSync.reload);
 }
 
 // 
-const build = series(
+const build = gulp.series(
 	clear,
-	parallel(pug, scss, js, img, font)
+	gulp.parallel(pug/* , scss, js, img, font */)
 );
 
-const dev = series(
+const dev = gulp.series(
 	build,
-	parallel(watcher, server)
+	gulp.parallel(watcher, server)
 );
 
 // Задачи
-exports.pug = pug;
-exports.scss = scss;
-exports.js = js;
-exports.img = img;
-exports.font = font;
+export { pug };
+// exports.scss = scss;
+// exports.js = js;
+// exports.img = img;
+// exports.font = font;
 
 
 // Сборка
-//exports.dev = dev;
-//exports.build = build;
+// exports.dev = dev;
+// exports.build = build;
 
-exports.default = app.isProd
+export default app.isProd
 	? build
 	: dev;

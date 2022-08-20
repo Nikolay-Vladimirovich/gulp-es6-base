@@ -1,28 +1,26 @@
-const { src, dest } = require("gulp");
+import { src, dest } from "gulp";
 
 // Конфигурация
-const path =  require("../config/path.js");
-const app =  require("../config/app.js");
+import path from  "../config/path.js";
+import app from  "../config/app.js";
 
 // Плагины
-const plumber = require("gulp-plumber");
-const notify = require("gulp-notify");
-const pugs = require("gulp-pug");
+import plumber from "gulp-plumber";
+import notify from "gulp-notify";
+import pug from "gulp-pug";
 
-const webpHtml = require("gulp-webp-html");
+import webpHtml from "gulp-webp-html";
 
 // Обработка PUG
-const pug = () => {
-	return src(path.pug.src)
+export default () => {
+	return gulp.src(path.pug.src)
 		.pipe(plumber({
 			errorHandler: notify.onError(error => ({
 				title: "PUG",
 				message: error.message
 			}))
 		}))
-		.pipe(pugs(app.pug))
+		.pipe(pug(app.pug))
 		.pipe(webpHtml())
-		.pipe(dest(path.pug.dest))
+		.pipe(gulp.dest(path.pug.dest))
 }
-
-module.exports = pug;
